@@ -1,0 +1,63 @@
+﻿@model ECommerce.ViewModels.SmartphoneIndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="row">
+    <div class="col-3">
+        <form asp-controller="Home" asp-action="Index">
+            <div class="form-group">
+                <input asp-for="SmartphoneFilter.Name" type="text" class="form-control" placeholder="დასახელება" />
+            </div>
+            <div class="form-group">
+                <input asp-for="Manufacturer.Name" type="text" class="form-control" placeholder="მწარმოებელი" />
+            </div>
+
+            <div class="form-check-inline">
+                <div class="form-group col-6">
+                    <input asp-for="SmartphoneFilter.PriceFrom" type="number" class="form-control" placeholder="ფასი-დან" />
+                </div>
+                <div class="form-group col-6">
+                    <input asp-for="SmartphoneFilter.PriceTo" type="number" class="form-control" placeholder="ფასი-მდე" />
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success w-50">ძებნა</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-9">
+        <div class="row">
+            <div class="card-deck">
+                
+                @foreach (var item in Model.Smartphones)
+                {
+                    <div class="col-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://png.pngtree.com/png-vector/20201230/ourmid/pngtree-black-and-white-smartphone-mockup-png-image_2676504.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <a asp-controller="Smartphone" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-success w-100">@item.Price ლარი</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<nav>
+    <ul class="pagination justify-content-end mt-3">
+        @for (var startIndex = 0; startIndex < Model.Smartphones.TotalPages; startIndex++)
+        {
+            <li class="page-item">
+                <a asp-controller="Home" asp-action="Index"
+                   asp-route-pageNumber="@(startIndex + 1)"
+                   }
+                   class="page-link">@(startIndex + 1)</a>
+            </li>
+        }
+
+        </ul>
+</nav>

@@ -1,0 +1,35 @@
+﻿@model ECommerce.Domain.Models.Smartphone
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">დასახელება</th>
+            <th scope="col">მწარმოებელი</th>
+            <th scope="col">ზომა</th>
+            <th scope="col">წონა</th>
+            <th scope="col">ეკრანის ზომა და გარჩევადობა</th>
+            <th scope="col">პროცესორი</th>
+            <th scope="col">მეხსიერება</th>
+            <th scope="col">ოპერაციული სისტემა</th>
+            <th scope="col">ფასი</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.Manufacturer.Name</td>
+            <td>@Model.Size</td>
+            <td>@Model.Weight</td>
+            <td>@Model.ScreenWidth x @Model.ScreenHeight</td>
+            <td>@Model.Processor</td>
+            <td>@Model.Ram</td>
+            <td>@Model.OperatingSystem</td>
+            <td>@Model.Price</td>
+        </tr>
+    </tbody>
+</table>
+
